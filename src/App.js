@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import TaskInput from './components/TaskInput'
 import List from './components/List'
-import Items from './components/Items';
+import Items from './components/Item';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       taskList: [],
-      id: Date.now(),
       item: '',
-      editItem: false
+      // editItem: false
     };
   }
 
@@ -22,7 +21,7 @@ class App extends Component {
   AddTask = (e) => {
     e.preventDefault();
     const newTask = {
-      id: this.state.id,
+      id: Date.now(),
       task: this.state.item
     };
     const updateState = [...this.state.taskList, newTask];
@@ -30,10 +29,9 @@ class App extends Component {
     this.setState({
       taskList: updateState,
         item: '',
-          id: Date.now(),
-            editItem: false
-    }, 
-    () => console.log(this.state))
+          
+    }) 
+    
   };
   ClearList = () => {
     console.log('list is clear')
