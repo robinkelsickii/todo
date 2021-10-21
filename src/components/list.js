@@ -7,7 +7,7 @@ export default class List extends Component {
         return (
             <div className="container border border-dark">
                 <div className='row border-border-warning'>
-                    <div className='col border border-danger'>
+                    <div className='col border border-danger text-center'>
                         <Items />
                     </div>
                 </div>
