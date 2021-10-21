@@ -7,25 +7,41 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      taskList: [{ id: 1, title: 'hello' }],
-      id: Date.now,
+      taskList: [],
+      id: Date.now(),
       item: '',
       editItem: false
     };
   }
-  UpdateState = ()=>{
-    console.log('state is updated')
+
+  ChangeState = (e) => {
+    this.setState({
+      item: e.target.value
+    })
   };
-  AddTask = ()=>{
-    console.log('task added')
+  AddTask = (e) => {
+    e.preventDefault();
+    const newTask = {
+      id: this.state.id,
+      task: this.state.item
+    };
+    const updateState = [...this.state.taskList, newTask];
+
+    this.setState({
+      taskList: updateState,
+        item: '',
+          id: Date.now(),
+            editItem: false
+    }, 
+    () => console.log(this.state))
   };
-  ClearList = ()=>{
+  ClearList = () => {
     console.log('list is clear')
   };
-  DeleteItem = ()=>{
+  DeleteItem = () => {
     console.log('item deleted')
   };
-  EditItem = ()=>{
+  EditItem = () => {
     console.log('item changed')
   };
   // ShowAll = ()=>{
@@ -38,15 +54,15 @@ class App extends Component {
   //   console.log('todo...')
   // }
   // CountItems(){
-    
+
   // };
 
 
 
-  
+
   render() {
 
-    // console.log(this.state.id)
+    console.log(this.state)
 
     return (
 
@@ -59,16 +75,16 @@ class App extends Component {
           </div>
         </div>
 
-        <TaskInput item={this.state.item} 
-        UpdateState={this.UpdateState} 
-        EditItem={this.EditItem}
-        AddTask={this.AddTask} 
+        <TaskInput item={this.state.item}
+          ChangeState={this.ChangeState}
+          EditItem={this.EditItem}
+          AddTask={this.AddTask}
         />
 
         <List taskList={this.state.taskList}
-        ClearList={this.ClearList}
-        DeleteItem={this.DeleteItem}
-         />
+          ClearList={this.ClearList}
+          DeleteItem={this.DeleteItem}
+        />
       </div >
 
     );
