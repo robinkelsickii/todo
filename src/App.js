@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TaskInput from './components/TaskInput'
 import List from './components/List'
-import Items from './components/Item';
+
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       taskList: [],
       item: '',
-      // editItem: false
+      complete: false,
     };
   }
 
@@ -22,71 +22,76 @@ class App extends Component {
     e.preventDefault();
     const newTask = {
       id: Date.now(),
-      task: this.state.item
+      task: this.state.item,
+      complete: false
     };
     const updateState = [...this.state.taskList, newTask];
 
     this.setState({
       taskList: updateState,
-        item: '',
-          
-    }) 
-    
+      item: '',
+
+    })
+
   };
   ClearList = () => {
-    console.log('list is clear')
+    this.setState({
+      taskList: []
+    });
   };
-  DeleteItem = () => {
-    console.log('item deleted')
+  DeleteItem = (id) => {
+    const updatedItems = this.state.taskList.filter(item => item.id !== id);
+    this.setState({
+      taskList: updatedItems
+    })
   };
-  EditItem = () => {
-    console.log('item changed')
-  };
-  // ShowAll = ()=>{
-  //   console.log('All items')
-  // };
-  // ShowComplete = ()=>{
-  //   console.log('completed items')
-  // };
-  // ShowActive = ()=>{
-  //   console.log('todo...')
-  // }
-  // CountItems(){
+//   CompletedItem = (id) => {
+   
+// }
+// ShowAll = ()=>{
+//   console.log('All items')
+// };
+// ShowComplete = ()=>{
+//   console.log('completed items')
+// };
+// ShowActive = ()=>{
+//   console.log('todo...')
+// }
+// CountItems(){
 
-  // };
-
-
+// };
 
 
-  render() {
 
-    console.log(this.state)
 
-    return (
+render() {
 
-      < div className="App" >
-        <div className='container'>
-          <div className='row'>
-            <div className='col text-center mt-5'>
-              <h1>Todo or Not Todo</h1>
-            </div>
+  console.log(this.state)
+
+  return (
+
+    < div className="App" >
+      <div className='container'>
+        <div className='row'>
+          <div className='col text-center mt-5'>
+            <h1>Todo or Not Todo</h1>
           </div>
         </div>
+      </div>
 
-        <TaskInput item={this.state.item}
-          ChangeState={this.ChangeState}
-          EditItem={this.EditItem}
-          AddTask={this.AddTask}
-        />
+      <TaskInput item={this.state.item}
+        ChangeState={this.ChangeState}
+        EditItem={this.EditItem}
+        AddTask={this.AddTask}
+      />
 
-        <List taskList={this.state.taskList}
-          ClearList={this.ClearList}
-          EditItem={this.EditItem}
-          DeleteItem={this.DeleteItem}
-        />
-      </div >
+      <List taskList={this.state.taskList}
+        ClearList={this.ClearList}
+        EditItem={this.EditItem}
+        DeleteItem={this.DeleteItem}
+      />
 
-    );
-  }
+
+    </div >
+  )
 }
-export default App;
