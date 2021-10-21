@@ -81,6 +81,7 @@ class App extends Component {
 
         <List taskList={this.state.taskList}
           ClearList={this.ClearList}
+          EditItem={this.EditItem}
           DeleteItem={this.DeleteItem}
         />
       </div >
