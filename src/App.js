@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TaskInput from './components/TaskInput'
 import List from './components/List'
+import Completed from './components/Completed';
+import Item from './components/Item';
 
 
 class App extends Component {
@@ -47,15 +49,31 @@ class App extends Component {
   CompleteTask = (id) => {
     const completed = this.state.taskList.map(item => {
       if(item.id === id){
-        this.setState({
-          task: this.state.item,
-          taskList: completed,
-          complete: true
-        })
+        item.complete = !item.complete
+        return <Completed />
       }
-      return completed;
+      // else {
+      //   return <Item />
+      // }
     })
+    this.setState({
+      taskList: completed,
+    })
+    console.log('complete'); 
+    // const count = this.state.taskList.reduce((counter, item) => {
+    //   if (item.complete === true) counter += 1
+    //   return counter;
+    // }, 0);
   }
+  // ShowComplete = (id) => {
+  //   const complete = {
+  //     id: this.state.item.id
+  //   }
+  // }
+
+
+
+
 
 
   render() {

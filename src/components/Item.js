@@ -9,8 +9,8 @@ export default class Item extends Component {
         return (
             <div className='container'>
                 <li className='list-group-item d-flex justify-content-between'>
-                    <div class="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={CompleteTask} />
+                    <div className="form-check p-2">
+                        <button type = 'button' className = 'btn btn-primary' onClick={CompleteTask}>O</button>
                         <label className="form-check-label" for="flexCheckDefault">
                             <h3> {task} </h3>
                         </label>
