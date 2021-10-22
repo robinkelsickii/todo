@@ -5,7 +5,7 @@ import '../index.css'
 export default class TaskInput extends Component {
     render() {
 
-        const { item, ChangeState, EditItem, AddTask } = this.props;
+        const { item, ChangeState, AddTask } = this.props;
 
         return (
             <div className="container">

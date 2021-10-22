@@ -12,12 +12,12 @@ class App extends Component {
       complete: false,
     };
   }
-
   ChangeState = (e) => {
     this.setState({
       item: e.target.value
     })
   };
+  
   AddTask = (e) => {
     e.preventDefault();
     const newTask = {
@@ -32,7 +32,6 @@ class App extends Component {
       item: '',
 
     })
-
   };
   ClearList = () => {
     this.setState({
@@ -45,53 +44,51 @@ class App extends Component {
       taskList: updatedItems
     })
   };
-//   CompletedItem = (id) => {
-   
-// }
-// ShowAll = ()=>{
-//   console.log('All items')
-// };
-// ShowComplete = ()=>{
-//   console.log('completed items')
-// };
-// ShowActive = ()=>{
-//   console.log('todo...')
-// }
-// CountItems(){
-
-// };
+  CompleteTask = (id) => {
+    const completed = this.state.taskList.map(item => {
+      if(item.id === id){
+        this.setState({
+          task: this.state.item,
+          taskList: completed,
+          complete: true
+        })
+      }
+      return completed;
+    })
+  }
 
 
+  render() {
 
+    console.log(this.state)
 
-render() {
+    return (
 
-  console.log(this.state)
-
-  return (
-
-    < div className="App" >
-      <div className='container'>
-        <div className='row'>
-          <div className='col text-center mt-5'>
-            <h1>Todo or Not Todo</h1>
+      < div className="App" >
+        <div className='container'>
+          <div className='row'>
+            <div className='col text-center mt-5'>
+              <h1>Todo or Not Todo</h1>
+            </div>
           </div>
         </div>
-      </div>
 
-      <TaskInput item={this.state.item}
-        ChangeState={this.ChangeState}
-        EditItem={this.EditItem}
-        AddTask={this.AddTask}
-      />
+        <TaskInput item={this.state.item}
+          ChangeState={this.ChangeState}
+          EditItem={this.EditItem}
+          AddTask={this.AddTask}
+        />
 
-      <List taskList={this.state.taskList}
-        ClearList={this.ClearList}
-        EditItem={this.EditItem}
-        DeleteItem={this.DeleteItem}
-      />
+        <List taskList={this.state.taskList}
+          ClearList={this.ClearList}
+          EditItem={this.EditItem}
+          DeleteItem={this.DeleteItem}
+        />
 
 
-    </div >
-  )
+      </div >
+
+    );
+  }
 }
+export default App;
